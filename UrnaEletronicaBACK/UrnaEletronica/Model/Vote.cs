@@ -9,7 +9,11 @@ namespace UrnaEletronica.Model
 {
     public class Vote
     {
-        public int CandidateId { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+
+        public int? CandidateId { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public DateTime VoteDate { get; set; }

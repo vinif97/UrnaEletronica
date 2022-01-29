@@ -16,9 +16,6 @@ namespace UrnaEletronica.Data
                 .HasMany(c => c.Votes)
                 .WithOne(e => e.Candidate)
                 .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<Vote>()
-                .HasKey(e => new { e.CandidateId, e.VoteDate });  
         }
     }
 }

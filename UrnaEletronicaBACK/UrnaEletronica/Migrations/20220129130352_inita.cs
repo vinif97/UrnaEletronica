@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace UrnaEletronica.Migrations
 {
-    public partial class initial : Migration
+    public partial class inita : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -34,13 +34,15 @@ namespace UrnaEletronica.Migrations
                 name: "Vote",
                 columns: table => new
                 {
-                    CandidateId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    CandidateId = table.Column<int>(type: "int", nullable: true),
                     VoteDate = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Vote", x => new { x.CandidateId, x.VoteDate });
+                    table.PrimaryKey("PK_Vote", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Vote_Candidate_CandidateId",
                         column: x => x.CandidateId,
@@ -49,6 +51,11 @@ namespace UrnaEletronica.Migrations
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Vote_CandidateId",
+                table: "Vote",
+                column: "CandidateId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
