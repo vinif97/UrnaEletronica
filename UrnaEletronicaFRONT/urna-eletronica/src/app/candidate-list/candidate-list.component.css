@@ -17,3 +17,10 @@
 .candidateTable{
   margin-top: 4%;
 }
+input{
+  margin-left: 8px;
+}
+.labelCustom {
+  font-weight: 800;
+  color: dodgerblue;
+}

@@ -7,5 +7,6 @@ namespace UrnaEletronica.Data
     {
         Task InsertCandidate(Candidate candidate);
         Task DeleteCandidate(Candidate candidate);
+        Task<Candidate> GetCandidateByLabel(int label);
     }
 }

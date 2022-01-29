@@ -59,8 +59,6 @@ namespace UrnaEletronica
 
             app.UseCors("CorsPolicy");
 
-            app.UseHttpsRedirection();
-
             app.UseRouting();
 
             app.UseAuthorization();

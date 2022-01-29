@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace UrnaEletronica.Controllers
 {
-    [Route("[Controller]")]
+    [Route("api/candidate")]
     [ApiController]
     public class CandidateController : ControllerBase
     {
@@ -36,11 +36,14 @@ namespace UrnaEletronica.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult> DeleteCandidate(Candidate candidate)
+        public async Task<ActionResult> DeleteCandidate([FromBody] int label)
         {
-            if (candidate == null) return NotFound();
             try
             {
+                Candidate candidate = await _repository.GetCandidateByLabel(label);
+
+                if (candidate == null) return NotFound();
+
                 await _repository.DeleteCandidate(candidate);
                 return NoContent();
             }

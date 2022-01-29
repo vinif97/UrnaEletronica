@@ -25,8 +25,14 @@ namespace UrnaEletronica.Data
 
         public async Task DeleteCandidate(Candidate candidate)
         {
+
             _context.Remove(candidate);
-            await _context.SaveChangesAsync();  
+            await _context.SaveChangesAsync();   
+        }
+
+        public async Task<Candidate> GetCandidateByLabel(int label)
+        {
+            return await _context.Candidate.AsNoTracking().FirstOrDefaultAsync(l => l.Label == label);
         }
     }
 }

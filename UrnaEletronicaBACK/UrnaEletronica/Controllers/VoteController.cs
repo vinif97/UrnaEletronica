@@ -9,6 +9,7 @@ using System;
 namespace UrnaEletronica.Controllers
 {
     [ApiController]
+    [Route("api")]
     public class VoteController : ControllerBase
     {
         private readonly IVoteRepository _repository;
