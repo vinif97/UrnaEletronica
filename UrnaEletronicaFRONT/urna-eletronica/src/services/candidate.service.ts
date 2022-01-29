@@ -1,6 +1,6 @@
+import { CandidateModule } from './../app/models/candidate.module';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CandidateModule } from 'src/app/models/candidate.module';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +9,14 @@ export class CandidateService {
 
   constructor(private http: HttpClient) { }
 
-  formData: CandidateModule = new CandidateModule();
-  ApiPath:string = 'https://localhost:44334';
+  candidateData: CandidateModule = new CandidateModule();
+  candidatesList: CandidateModule[];
 
-  public registerCandidate(candidateData: any){
-    return this.http.post(this.ApiPath + '/candidate', candidateData)
+  public registerCandidate(){
+    return this.http.post('api/candidate', this.candidateData);
   }
 
+  getCandidatesList() {
+    return this.http.get('api/votes');
+  }
 }

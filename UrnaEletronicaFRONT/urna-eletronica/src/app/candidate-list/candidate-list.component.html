@@ -6,39 +6,71 @@
   </div>
 </div>
 <div class="card mt-5 candidateForm">
-  <form #registerForm="ngForm">
+  <form #candidateForm="ngForm" (submit)="submitCandidate(candidateForm)">
     <div class="form-group">
-      <label for="fullName">Nome Completo</label>
-      <input type="text" #fullName="ngModel" [(ngModel)]="candidateService.formData.fullName" name="fullName" class="form-control"
-      placeholder="Nome Completo" [value]="candidateService.formData.fullName" >
+      <label class="labelForm" for="fullName">Nome Completo</label>
+      <input
+        type="text"
+        #fullName="ngModel"
+        [(ngModel)]="candidateService.candidateData.fullName"
+        name="fullName"
+        class="form-control"
+        placeholder="Nome Completo"
+        [value]="candidateService.candidateData.fullName"
+        required
+      />
     </div>
     <div class="form-group">
-      <label for="viceName">Nome do Vice</label>
-      <input type="text" #viceName="ngModel" [(ngModel)]="candidateService.formData.viceName" name="viceName" class="form-control"
-        placeholder="Vice-Presidente" [value]="candidateService.formData.viceName">
+      <label class="labelForm" for="viceName">Nome do Vice</label>
+      <input
+        type="text"
+        #viceName="ngModel"
+        [(ngModel)]="candidateService.candidateData.viceName"
+        name="viceName"
+        class="form-control"
+        placeholder="Vice-Presidente"
+        [value]="candidateService.candidateData.viceName"
+        required
+      />
     </div>
     <div class="form-group">
-      <label for="label">Legenda</label>
-      <input type="number" #label="ngModel" [(ngModel)]="candidateService.formData.label" name="label" class="form-control"
-        placeholder="Legenda" [value]="candidateService.formData.label">
+      <label class="labelForm" for="label">Legenda</label>
+      <input
+        type="number"
+        #label="ngModel"
+        [(ngModel)]="candidateService.candidateData.label"
+        name="label"
+        class="form-control"
+        placeholder="Legenda"
+        [value]="candidateService.candidateData.label"
+      />
     </div>
     <div class="form-group">
-      <input type="submit" value="Register" class="btn btn-primary w-100 submitBtn">
+      <button
+        type="submit"
+        value="Register"
+        class="btn btn-primary w-100 submitBtn"
+        [disabled]="candidateForm.invalid"
+      >
+        Register
+      </button>
     </div>
   </form>
-</div>
-<table class="table table-hover">
-  <thead>
-    <tr class="table-primary">
-      <th scope="col">Nome Completo</th>
-      <th scope="col">Legenda</th>
-    </tr>
-  </thead>
+  <div>
+    <table class="table table-hover candidateTable table-bordered border border-2 border-dark">
+      <thead>
+        <tr class="table-primary">
+          <th scope="col" class="border border-2 border-dark">Nome Completo</th>
+          <th scope="col" class="border border-2 border-dark">Legenda</th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <tr class="table-primary">
-      <td>Lula</td>
-      <td>31</td>
-    </tr>
-  </tbody>
-</table>
+      <tbody>
+        <tr *ngFor="let candidate of candidateList" class="table-primary">
+          <td class="border border-2 border-dark">{{candidate.fullName}}</td>
+          <td class="border border-2 border-dark">{{candidate.label}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -8,6 +8,9 @@ import { BallotBoxComponent } from './ballot-box/ballot-box.component';
 import { VoteResultComponent } from './vote-result/vote-result.component';
 import { CandidateListComponent } from './candidate-list/candidate-list.component';
 import { FormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +23,9 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [HttpClientModule ,VoteService],
   bootstrap: [AppComponent]
