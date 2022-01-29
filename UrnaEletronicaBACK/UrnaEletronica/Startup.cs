@@ -34,8 +34,7 @@ namespace UrnaEletronica
                 opt.AddPolicy("CorsPolicy", builder => builder
                     .AllowAnyOrigin()
                     .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials());
+                    .AllowAnyHeader());
             });
 
             services.AddControllersWithViews().AddNewtonsoftJson(options =>

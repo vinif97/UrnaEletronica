@@ -3,6 +3,8 @@ using System.Linq;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
+using System;
+using Microsoft.AspNetCore.Http;
 
 namespace UrnaEletronica.Data
 {

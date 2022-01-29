@@ -3,6 +3,8 @@ using System.Linq;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
+using MySqlConnector;
+using System;
 
 namespace UrnaEletronica.Data
 {

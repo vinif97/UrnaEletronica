@@ -11,6 +11,7 @@ namespace UrnaEletronica.Model
     {
         public int CandidateId { get; set; }
 
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public DateTime VoteDate { get; set; }
 
         [ForeignKey("CandidateId")]

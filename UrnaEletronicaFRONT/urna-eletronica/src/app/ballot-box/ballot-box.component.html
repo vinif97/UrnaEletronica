@@ -1,0 +1,51 @@
+<div class="containerBase">
+  <div *ngIf="tela === 'votacao'">
+    <div class="containerCinzaClaro">
+      <p class="titleVote">SEU VOTO PARA:</p>
+      <p class="politic">PRESIDENTE</p>
+      <form action="">
+        <input
+          class="candidateInput"
+          size="1"
+          id="candidateLabel1"
+          value=""
+          maxlength="1"
+          type="text"
+          readonly="readonly"
+        />
+        <input
+          class="candidateInput"
+          size="1"
+          id="candidateLabel2"
+          value=""
+          maxlength="1"
+          type="text"
+          readonly="readonly"
+        />
+      </form>
+    </div>
+    <div class="containerPreto">
+      <button class="button click" onclick="inserir(1)">1</button>
+      <button class="button click" onclick="inserir(2)">2</button>
+      <button class="button click" onclick="inserir(3)">3</button>
+      <button class="button click" onclick="inserir(4)">4</button>
+      <button class="button click" onclick="inserir(5)">5</button>
+      <button class="button click" onclick="inserir(6)">6</button>
+      <button class="button click" onclick="inserir(7)">7</button>
+      <button class="button click" onclick="inserir(8)">8</button>
+      <button class="button click" onclick="inserir(9)">9</button>
+      <button class="button click" onclick="inserir(0)">0</button>
+      <div class="teclado2">
+        <button class="branco click" onclick="whiteVote">BRANCO</button>
+        <button class="laranja click" onclick="correctVote()">CORRIGE</button>
+        <button class="verde" onclick="confirmVote()">CONFIRMA</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="tela === 'fim'" class="containerCinzaClaro">
+    <h1 class="fim">FIM</h1>
+    <button type="button" class="btn btn-dark">Reiniciar Votação</button>
+  </div>
+</div>
+

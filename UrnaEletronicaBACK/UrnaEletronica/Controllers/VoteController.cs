@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UrnaEletronica.Model;
 using UrnaEletronica.Data;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using System;
 
 namespace UrnaEletronica.Controllers
 {
@@ -19,17 +21,31 @@ namespace UrnaEletronica.Controllers
         [HttpGet("votes")]
         public async Task<ActionResult<IEnumerable<Candidate>>> GetVotesByCandidates()
         {
-            IEnumerable<Candidate> candidates = await _repository.GetVotesByCandidates();
-
-            return Ok(candidates);
+            try
+            {
+                IEnumerable<Candidate> candidates = await _repository.GetVotesByCandidates();
+                return Ok(candidates);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Erro ao tentar obter os candidatos do banco de dados");
+            }
         }
 
         [HttpPost("vote")]
         public async Task<ActionResult> InsertVote(Vote vote)
         {
-            await _repository.InsertVote(vote);
-
-            return Ok();
+            try
+            {
+                await _repository.InsertVote(vote);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Erro ao tentar computar o voto.");
+            }
         }
     }
 }

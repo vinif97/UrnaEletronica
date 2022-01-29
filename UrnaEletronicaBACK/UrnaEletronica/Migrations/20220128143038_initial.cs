@@ -22,7 +22,7 @@ namespace UrnaEletronica.Migrations
                     ViceName = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     RegistryDate = table.Column<DateTime>(type: "datetime(6)", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.ComputedColumn)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn)
                 },
                 constraints: table =>
                 {
@@ -36,6 +36,7 @@ namespace UrnaEletronica.Migrations
                 {
                     CandidateId = table.Column<int>(type: "int", nullable: false),
                     VoteDate = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn)
                 },
                 constraints: table =>
                 {

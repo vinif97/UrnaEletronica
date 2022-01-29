@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="titleBox card border-secondary mb-6">
+    <div class="card-body">
+      <h1 class="title">Candidatos</h1>
+    </div>
+  </div>
+</div>
+<div class="card mt-5 candidateForm">
+  <form #registerForm="ngForm">
+    <div class="form-group">
+      <label for="fullName">Nome Completo</label>
+      <input type="text" #fullName="ngModel" [(ngModel)]="candidateService.formData.fullName" name="fullName" class="form-control"
+      placeholder="Nome Completo" [value]="candidateService.formData.fullName" >
+    </div>
+    <div class="form-group">
+      <label for="viceName">Nome do Vice</label>
+      <input type="text" #viceName="ngModel" [(ngModel)]="candidateService.formData.viceName" name="viceName" class="form-control"
+        placeholder="Vice-Presidente" [value]="candidateService.formData.viceName">
+    </div>
+    <div class="form-group">
+      <label for="label">Legenda</label>
+      <input type="number" #label="ngModel" [(ngModel)]="candidateService.formData.label" name="label" class="form-control"
+        placeholder="Legenda" [value]="candidateService.formData.label">
+    </div>
+    <div class="form-group">
+      <input type="submit" value="Register" class="btn btn-primary w-100 submitBtn">
+    </div>
+  </form>
+</div>
+<table class="table table-hover">
+  <thead>
+    <tr class="table-primary">
+      <th scope="col">Nome Completo</th>
+      <th scope="col">Legenda</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr class="table-primary">
+      <td>Lula</td>
+      <td>31</td>
+    </tr>
+  </tbody>
+</table>

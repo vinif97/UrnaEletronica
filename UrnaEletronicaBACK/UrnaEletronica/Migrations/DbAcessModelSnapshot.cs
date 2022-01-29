@@ -29,7 +29,7 @@ namespace UrnaEletronica.Migrations
                         .HasColumnType("varchar(100)");
 
                     b.Property<DateTime>("RegistryDate")
-                        .ValueGeneratedOnAddOrUpdate()
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("ViceName")
@@ -48,6 +48,7 @@ namespace UrnaEletronica.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("VoteDate")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("CandidateId", "VoteDate");

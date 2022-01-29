@@ -9,7 +9,7 @@ using UrnaEletronica.Data;
 namespace UrnaEletronica.Migrations
 {
     [DbContext(typeof(DbAcess))]
-    [Migration("20220126172857_initial")]
+    [Migration("20220128143038_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,7 +31,7 @@ namespace UrnaEletronica.Migrations
                         .HasColumnType("varchar(100)");
 
                     b.Property<DateTime>("RegistryDate")
-                        .ValueGeneratedOnAddOrUpdate()
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("ViceName")
@@ -50,6 +50,7 @@ namespace UrnaEletronica.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("VoteDate")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("CandidateId", "VoteDate");

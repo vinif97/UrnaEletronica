@@ -17,7 +17,7 @@ namespace UrnaEletronica.Model
         [MaxLength(100)]
         public string ViceName { get; set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public DateTime RegistryDate { get; set; }
 
         [Required]

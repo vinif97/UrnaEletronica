@@ -1,0 +1,81 @@
+.containerBase{
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+.containerPreto{
+  border: solid 2px;
+  top: 20%;
+  right: 5%;
+  position: absolute;
+  background-color: #444;
+  height: 600px;
+  width: 400px;
+}
+.containerCinzaClaro{
+  position: absolute;
+  border: solid 1px;
+  margin-left: 40px;
+  margin-top: 100px;
+  position: absolute;
+  height: 700px;
+  width: 1000px;
+  background-color: snow;
+}
+.button{
+  margin: 15px;
+  background-color: black;
+  color: snow;
+  border-radius: 5px;
+  height: 80px;
+  width: 90px;
+  font-size: 200%;
+}
+.teclado2{
+  font-size: 11px;
+  position: absolute;
+  bottom: 20px;
+  left: 5px;
+  color: black;
+}
+.branco{
+  font-size: 150%;
+  margin: 7px;
+  height: 65px;
+  width: 113px;
+}
+.laranja{
+  font-size: 150%;
+  margin: 7px;
+  height: 65px;
+  width: 113px;
+  background-color: #E67401;
+}
+.verde{
+  font-size: 150%;
+  margin: 7px;
+  height: 85px;
+  width: 113px;
+  background-color: green;
+}
+.titleVote{
+  font-size: 30px;
+  text-align: left;
+  margin: 25px 100px 0;
+}
+.candidateInput{
+  height: 100px;
+  width: 100px;
+  margin: 3px;
+}
+.politic{
+  margin: 8% auto 10%;
+  font-size: 25px;
+  font-weight: bold;
+}
+.fim{
+  text-align: center;
+  margin: 20% 20%;
+  font-size: 150px;
+}
