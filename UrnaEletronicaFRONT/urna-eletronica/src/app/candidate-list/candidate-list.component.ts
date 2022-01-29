@@ -1,8 +1,8 @@
+import { CandidateModule } from './../models/candidate.module';
 import { ToastrService } from 'ngx-toastr';
 import { CandidateService } from './../../services/candidate.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { CandidateModule } from '../models/candidate.module';
 
 @Component({
   selector: 'app-candidate-list',
@@ -52,6 +52,22 @@ export class CandidateListComponent {
       error: (error) => {
         this.toastr.error(
           'Falha ao carregar os candidatos, verifique a conexão com a API.'
+        );
+      },
+    });
+  }
+
+  deleteCandidate(candidate) {
+    this.candidateService.deleteCandidate(candidate.label).subscribe({
+      next: (response) => {
+        this.toastr.success(
+          'Candidato deletado com sucesso.'
+        );
+        this.getCandidates();
+      },
+      error: (error) => {
+        this.toastr.error(
+          'Falha ao deletar candidato, verifique a conexão com a API.'
         );
       },
     });

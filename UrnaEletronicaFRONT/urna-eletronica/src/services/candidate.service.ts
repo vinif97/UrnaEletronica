@@ -3,20 +3,22 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CandidateService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   candidateData: CandidateModule = new CandidateModule();
-  candidatesList: CandidateModule[];
 
-  public registerCandidate(){
+  public registerCandidate() {
     return this.http.post('api/candidate', this.candidateData);
   }
 
   getCandidatesList() {
     return this.http.get('api/votes');
+  }
+
+  deleteCandidate(label: Number) {
+    return this.http.delete(`/api/candidate/${label}`);
   }
 }

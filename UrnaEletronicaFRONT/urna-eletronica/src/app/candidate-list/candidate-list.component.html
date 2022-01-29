@@ -73,7 +73,7 @@
           <td class="border border-2 border-dark">{{ candidate.fullName }}</td>
           <td class="border border-2 border-dark">{{ candidate.label }}</td>
           <td class="border border-2 border-dark">
-            <button type="button" class="btn btn-danger btn-sm">Deletar</button>
+            <button type="button" class="btn btn-danger btn-sm" (click)="deleteCandidate(candidate)">Deletar</button>
           </td>
         </tr>
       </tbody>
