@@ -35,8 +35,8 @@ namespace UrnaEletronica.Controllers
             
         }
 
-        [HttpDelete]
-        public async Task<ActionResult> DeleteCandidate([FromBody] int label)
+        [HttpDelete("{label}")]
+        public async Task<ActionResult> DeleteCandidate(int label)
         {
             try
             {
