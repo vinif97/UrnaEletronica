@@ -1,7 +1,5 @@
-import { NgModule } from '@angular/core';
+import { Injectable, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-
 
 @NgModule({
   declarations: [],
@@ -12,7 +10,7 @@ import { CommonModule } from '@angular/common';
 export class VoteModule {
   candidateId: Number
 
-  constructor(){
-    this.candidateId=0;
+  constructor(id?: Number){
+    this.candidateId=id;
   }
 }

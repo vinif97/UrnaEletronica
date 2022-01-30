@@ -48,7 +48,7 @@ namespace UrnaEletronica.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("CandidateId")
+                    b.Property<int>("CandidateId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("VoteDate")
@@ -67,7 +67,8 @@ namespace UrnaEletronica.Migrations
                     b.HasOne("UrnaEletronica.Model.Candidate", "Candidate")
                         .WithMany("Votes")
                         .HasForeignKey("CandidateId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Candidate");
                 });

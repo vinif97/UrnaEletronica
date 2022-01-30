@@ -39,20 +39,20 @@
   left: 5px;
   color: black;
 }
-.branco{
+.white{
   font-size: 150%;
   margin: 7px;
   height: 65px;
   width: 113px;
 }
-.laranja{
+.orange{
   font-size: 150%;
   margin: 7px;
   height: 65px;
   width: 113px;
   background-color: #E67401;
 }
-.verde{
+.green{
   font-size: 150%;
   margin: 7px;
   height: 85px;
@@ -68,9 +68,11 @@
   height: 100px;
   width: 100px;
   margin: 3px;
+  font-size: 50px;
+  text-align: center;
 }
 .politic{
-  margin: 8% auto 10%;
+  margin: 5% auto 5%;
   font-size: 25px;
   font-weight: bold;
 }
@@ -78,4 +80,13 @@
   text-align: center;
   margin: 20% 20%;
   font-size: 150px;
+}
+.containerCandidateProfile{
+   padding: 0;
+   margin: 20px auto;
+}
+.candidateProfile{
+  font-size: 30px;
+  text-align: right;
+  margin-right: 50px;
 }

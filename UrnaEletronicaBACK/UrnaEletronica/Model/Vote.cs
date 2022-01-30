@@ -13,7 +13,8 @@ namespace UrnaEletronica.Model
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public int? CandidateId { get; set; }
+        [Range(10, 100, ErrorMessage = "Id do candidato deve ter 2 dígitos.")]
+        public int CandidateId { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public DateTime VoteDate { get; set; }

@@ -22,6 +22,7 @@ namespace UrnaEletronica.Model
 
         [Required]
         [Key]
+        [Range(10, 100, ErrorMessage = "Id do candidato deve ter 2 dígitos.")]
         public int Label { get; set; }
         public ICollection<Vote> Votes { get; set; }
     }

@@ -5,8 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using System;
 using Microsoft.AspNetCore.Http;
+using UrnaEletronica.Data;
 
-namespace UrnaEletronica.Data
+namespace UrnaEletronica.Repository
 {
     public class CandidateRepository : ICandidateRepository
     {
@@ -25,14 +26,14 @@ namespace UrnaEletronica.Data
 
         public async Task DeleteCandidate(Candidate candidate)
         {
-
             _context.Remove(candidate);
             await _context.SaveChangesAsync();   
         }
 
-        public async Task<Candidate> GetCandidateByLabel(int label)
+        public async Task<Candidate> GetCandidateByLabel(CandidateDelete candidateDelete)
         {
-            return await _context.Candidate.AsNoTracking().FirstOrDefaultAsync(l => l.Label == label);
+
+            return await _context.Candidate.AsNoTracking().FirstOrDefaultAsync(l => l.Label == candidateDelete.Label);
         }
     }
 }

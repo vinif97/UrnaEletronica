@@ -6,12 +6,13 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class CandidateService {
+
+  candidateModel: CandidateModule = new CandidateModule();
+
   constructor(private http: HttpClient) {}
 
-  candidateData: CandidateModule = new CandidateModule();
-
   public registerCandidate() {
-    return this.http.post('api/candidate', this.candidateData);
+    return this.http.post('api/candidate', this.candidateModel);
   }
 
   getCandidatesList() {

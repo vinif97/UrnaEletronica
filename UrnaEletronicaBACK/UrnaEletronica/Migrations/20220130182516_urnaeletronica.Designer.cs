@@ -9,8 +9,8 @@ using UrnaEletronica.Data;
 namespace UrnaEletronica.Migrations
 {
     [DbContext(typeof(DbAcess))]
-    [Migration("20220129130352_inita")]
-    partial class inita
+    [Migration("20220130182516_urnaeletronica")]
+    partial class urnaeletronica
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,7 +50,7 @@ namespace UrnaEletronica.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("CandidateId")
+                    b.Property<int>("CandidateId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("VoteDate")
@@ -69,7 +69,8 @@ namespace UrnaEletronica.Migrations
                     b.HasOne("UrnaEletronica.Model.Candidate", "Candidate")
                         .WithMany("Votes")
                         .HasForeignKey("CandidateId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Candidate");
                 });

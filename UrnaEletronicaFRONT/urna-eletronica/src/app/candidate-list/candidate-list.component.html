@@ -12,11 +12,10 @@
       <input
         type="text"
         #fullName="ngModel"
-        [(ngModel)]="candidateService.candidateData.fullName"
+        [(ngModel)]="candidateService.candidateModel.fullName"
         name="fullName"
         class="form-control"
         placeholder="Nome Completo"
-        [value]="candidateService.candidateData.fullName"
         required
       />
     </div>
@@ -25,11 +24,10 @@
       <input
         type="text"
         #viceName="ngModel"
-        [(ngModel)]="candidateService.candidateData.viceName"
+        [(ngModel)]="candidateService.candidateModel.viceName"
         name="viceName"
         class="form-control"
         placeholder="Vice-Presidente"
-        [value]="candidateService.candidateData.viceName"
         required
       />
     </div>
@@ -38,11 +36,11 @@
       <input
         type="number"
         #label="ngModel"
-        [(ngModel)]="candidateService.candidateData.label"
+        [(ngModel)]="candidateService.candidateModel.label"
         name="label"
         class="form-control"
         placeholder="Legenda"
-        [value]="candidateService.candidateData.label"
+        required
       />
     </div>
     <div class="form-group">
@@ -69,13 +67,23 @@
       </thead>
 
       <tbody>
-        <tr *ngFor="let candidate of candidateList" class="table-primary">
-          <td class="border border-2 border-dark">{{ candidate.fullName }}</td>
-          <td class="border border-2 border-dark">{{ candidate.label }}</td>
-          <td class="border border-2 border-dark">
-            <button type="button" class="btn btn-danger btn-sm" (click)="deleteCandidate(candidate)">Deletar</button>
-          </td>
-        </tr>
+        <ng-container *ngFor="let candidate of candidateList">
+          <tr *ngIf="candidate.label != 100 && candidate.label != 99" class="table-primary">
+            <td class="border border-2 border-dark">
+              {{ candidate.fullName }}
+            </td>
+            <td class="border border-2 border-dark">{{ candidate.label }}</td>
+            <td class="border border-2 border-dark">
+              <button
+                type="button"
+                class="btn btn-danger btn-sm"
+                (click)="deleteCandidate(candidate)"
+              >
+                Deletar
+              </button>
+            </td>
+          </tr>
+        </ng-container>
       </tbody>
     </table>
   </div>

@@ -5,6 +5,7 @@ using UrnaEletronica.Data;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using System;
+using UrnaEletronica.Repository;
 
 namespace UrnaEletronica.Controllers
 {
@@ -37,6 +38,8 @@ namespace UrnaEletronica.Controllers
         [HttpPost("vote")]
         public async Task<ActionResult> InsertVote(Vote vote)
         {
+            if (vote == null) return BadRequest("Erro nos dados enviados.");
+
             try
             {
                 await _repository.InsertVote(vote);

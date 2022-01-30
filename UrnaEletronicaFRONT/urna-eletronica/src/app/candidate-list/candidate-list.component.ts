@@ -41,7 +41,7 @@ export class CandidateListComponent {
 
   resetCandidateForm(candidateForm: NgForm) {
     candidateForm.form.reset();
-    this.candidateService.candidateData = new CandidateModule();
+    this.candidateService.candidateModel = new CandidateModule();
   }
 
   getCandidates() {
@@ -60,9 +60,7 @@ export class CandidateListComponent {
   deleteCandidate(candidate) {
     this.candidateService.deleteCandidate(candidate.label).subscribe({
       next: (response) => {
-        this.toastr.success(
-          'Candidato deletado com sucesso.'
-        );
+        this.toastr.success('Candidato deletado com sucesso.');
         this.getCandidates();
       },
       error: (error) => {

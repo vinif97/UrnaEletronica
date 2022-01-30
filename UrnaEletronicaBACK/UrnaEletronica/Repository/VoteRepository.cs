@@ -5,8 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using MySqlConnector;
 using System;
+using UrnaEletronica.Data;
 
-namespace UrnaEletronica.Data
+namespace UrnaEletronica.Repository
 {
     public class VoteRepository : IVoteRepository
     {
