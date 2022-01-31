@@ -43,7 +43,7 @@ export class BallotBoxComponent implements OnInit {
       },
       error: (error) => {
         this.toastr.error(
-          'Voto não foi computado. Verifique a conexão com a API.'
+          'Voto não foi computado'
         );
       },
     });
@@ -65,10 +65,10 @@ export class BallotBoxComponent implements OnInit {
     let valueVote: Number = parseInt(
       this.firstDigit.nativeElement.value + this.lastDigit.nativeElement.value
     );
-    if (this.verifyIfCandidateIsNull(valueVote)) {
-      this.voteModel.candidateId = 101;
-    } else {
+    if (this.verifyIfCandidateIsValid(valueVote)) {
       this.voteModel.candidateId = valueVote;
+    } else {
+      this.voteModel.candidateId = 101;
     }
 
     this.insertVote(this.voteModel);
@@ -114,7 +114,7 @@ export class BallotBoxComponent implements OnInit {
       },
       error: (error) => {
         this.toastr.error(
-          'Falha ao carregar os candidatos, verifique a conexão com a API.'
+          'Falha ao carregar os candidatos.'
         );
       },
     });
@@ -134,9 +134,9 @@ export class BallotBoxComponent implements OnInit {
     }
   }
 
-  verifyIfCandidateIsNull(valueVote: Number) {
+  verifyIfCandidateIsValid(valueVote: Number) {
     for (let candidate of this.candidateList) {
-      if (valueVote !== parseInt(candidate.label)) {
+      if (valueVote === parseInt(candidate.label ) && valueVote < 100) {
         return true;
       }
     }

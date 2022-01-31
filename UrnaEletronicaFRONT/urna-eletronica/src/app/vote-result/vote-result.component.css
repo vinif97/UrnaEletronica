@@ -1,0 +1,16 @@
+.card {
+  margin: 0 auto;
+  float: none;
+  margin-bottom: 10px;
+  width: 15vw;
+  height: 15vw;
+}
+.votos-validos{
+  margin: 2vw 5vw;
+  float: left;
+  margin-bottom: 10px;
+}
+.text{
+  font-size: 2vw;
+  text-align: center;
+}
