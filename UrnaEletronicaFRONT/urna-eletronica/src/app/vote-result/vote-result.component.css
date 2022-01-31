@@ -1,4 +1,4 @@
-.card {
+.card{
   margin: 0 auto;
   float: none;
   margin-bottom: 10px;
@@ -6,11 +6,17 @@
   height: 15vw;
 }
 .votos-validos{
-  margin: 2vw 5vw;
+  margin: 2vw 15vw;
   float: left;
+  margin-bottom: 10px;
+}
+.votos-invalidos{
+  margin: 2vw 15vw;
+  float: right;
   margin-bottom: 10px;
 }
 .text{
   font-size: 2vw;
   text-align: center;
 }
+
