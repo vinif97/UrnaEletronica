@@ -24,7 +24,7 @@ export class BallotBoxComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getCandidates()
+    this.getCandidates();
   }
 
   playAudio(src: string) {
@@ -54,11 +54,19 @@ export class BallotBoxComponent implements OnInit {
   }
 
   confirmVote() {
+    if (
+      this.firstDigit.nativeElement.value === '' ||
+      this.lastDigit.nativeElement.value === ''
+    ) {
+      this.toastr.error('Digite ambos os números para prosseguir.');
+      return;
+    }
+
     let valueVote: Number = parseInt(
       this.firstDigit.nativeElement.value + this.lastDigit.nativeElement.value
     );
-    if (valueVote === 99 || valueVote === 0) {
-      this.voteModel.candidateId = 99;
+    if (this.verifyIfCandidateIsNull(valueVote)) {
+      this.voteModel.candidateId = 101;
     } else {
       this.voteModel.candidateId = valueVote;
     }
@@ -93,7 +101,7 @@ export class BallotBoxComponent implements OnInit {
         this.firstDigit.nativeElement.value + this.lastDigit.nativeElement.value
       );
 
-      this.verifyCandidate(valueVote);
+      this.changeCandidateProfile(valueVote);
     }
 
     this.playAudio('key.wav');
@@ -112,21 +120,27 @@ export class BallotBoxComponent implements OnInit {
     });
   }
 
-  verifyCandidate(valueVote: Number) {
-    console.log(this.candidateList);
+  changeCandidateProfile(valueVote: Number) {
     for (let candidate of this.candidateList) {
-      if (valueVote === 99) {
-        this.currentCandidate.nativeElement.innerText = 'Voto Nulo';
+      if (valueVote === parseInt(candidate.label)) {
+        this.currentCandidate.nativeElement.innerText =
+          candidate.fullName + '\n' + candidate.viceName;
         break;
       }
-      if (valueVote === parseInt(candidate.label)) {
-        console.log("Candidato encontrado");
-        this.currentCandidate.nativeElement.innerText = 'XXX Candidato';
-        break;
-      } else {
-        this.currentCandidate.nativeElement.innetText = 'Candidato não encontrado';
-        console.log("candidato não encontrado")
+      if (valueVote !== parseInt(candidate.label)) {
+        this.currentCandidate.nativeElement.innerText =
+          'Candidato Inválido\n Confirme para Voto Nulo';
       }
     }
+  }
+
+  verifyIfCandidateIsNull(valueVote: Number) {
+    for (let candidate of this.candidateList) {
+      if (valueVote !== parseInt(candidate.label)) {
+        return true;
+      }
+    }
+
+    return false;
   }
 }

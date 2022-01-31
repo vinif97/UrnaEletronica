@@ -1,6 +1,6 @@
 import { CandidateModule } from './../app/models/candidate.module';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpRequest } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -15,11 +15,11 @@ export class CandidateService {
     return this.http.post('api/candidate', this.candidateModel);
   }
 
-  getCandidatesList() {
+  public getCandidatesList() {
     return this.http.get('api/votes');
   }
 
-  deleteCandidate(label: Number) {
-    return this.http.delete(`/api/candidate/${label}`);
+  public deleteCandidate(label: Number) {
+    return this.http.request('delete', '/api/candidate', {body: {'label': label}});
   }
 }
