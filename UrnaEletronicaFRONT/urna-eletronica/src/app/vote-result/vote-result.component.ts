@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class VoteResultComponent {
   candidateList: any = [];
+  totalVotesValids: number = 0;
 
   constructor(
     public candidateService: CandidateService,
@@ -18,7 +19,17 @@ export class VoteResultComponent {
   ngOnInit() {
     this.candidateService.getCandidatesList().subscribe((candidates: any) => {
       this.candidateList = candidates.sort((a, b) => b.votes.length - a.votes.length);
-      console.log(this.candidateList);
+
+      for (let candidate of this.candidateList){
+        if (candidate.label < 100){
+          this.totalVotesValids += candidate.votes.length;
+        }
+      }
     });
+  }
+
+  votesInPercentage(votes: number) : number{
+    let votesPercentage: number = (votes / this.totalVotesValids) * 100;
+    return parseFloat(votesPercentage.toFixed(2));
   }
 }

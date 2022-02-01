@@ -1,22 +1,36 @@
-.card{
+.card-valid{
   margin: 0 auto;
   float: none;
   margin-bottom: 10px;
-  width: 15vw;
-  height: 15vw;
+  width: 12vw;
+  height: 12vw;
 }
-.votos-validos{
+.card-invalid{
+  margin: 0 auto;
+  float: none;
+  margin-bottom: 10px;
+  width: 8vw;
+  height: 8vw;
+}
+.vote-valid{
   margin: 2vw 15vw;
   float: left;
   margin-bottom: 10px;
 }
-.votos-invalidos{
+.vote-invalid{
   margin: 2vw 15vw;
   float: right;
   margin-bottom: 10px;
+  width: 5vw;
+  height: 5vw;
 }
-.text{
-  font-size: 2vw;
+.text-valid{
+  font-size: 1.5vw;
   text-align: center;
 }
+.text-invalid{
+  font-size: 1vw;
+  text-align: center;
+}
+
 

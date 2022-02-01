@@ -17,7 +17,15 @@
         class="form-control"
         placeholder="Nome Completo"
         required
+        maxlength="100"
+        minlength="5"
       />
+    </div>
+    <div
+      *ngIf="fullName.touched && fullName.invalid && fullName.errors?.minlength"
+      class="alert alert-danger"
+    >
+      <p>Nome deve ter 5 ou mais caracteres</p>
     </div>
     <div class="form-group">
       <label class="labelForm labelCustom" for="viceName">Nome do Vice</label>
@@ -29,19 +37,32 @@
         class="form-control"
         placeholder="Vice-Presidente"
         required
+        maxlength="100"
+        minlength="5"
       />
+    </div>
+    <div
+      *ngIf="viceName.touched && viceName.invalid && viceName.errors?.minlength"
+      class="alert alert-danger"
+    >
+      <p>Nome deve ter 5 ou mais caracteres</p>
     </div>
     <div class="form-group">
       <label class="labelForm labelCustom" for="label">Legenda</label>
       <input
-        type="number"
+        type="text"
         #label="ngModel"
         [(ngModel)]="candidateService.candidateModel.label"
         name="label"
         class="form-control"
-        placeholder="Legenda"
+        placeholder="0"
         required
+        maxlength="2"
+        minlength="2"
       />
+    </div>
+    <div *ngIf="label.touched && label.invalid && label.errors?.minlength" class="alert alert-danger">
+      <p>Nome deve ter 5 ou mais caracteres</p>
     </div>
     <div class="form-group">
       <button
@@ -68,7 +89,10 @@
 
       <tbody>
         <ng-container *ngFor="let candidate of candidateList">
-          <tr *ngIf="candidate.label != 100 && candidate.label != 101" class="table-primary">
+          <tr
+            *ngIf="candidate.label != 100 && candidate.label != 101"
+            class="table-primary"
+          >
             <td class="border border-2 border-dark">
               {{ candidate.fullName }}
             </td>

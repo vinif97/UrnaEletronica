@@ -43,7 +43,7 @@ export class BallotBoxComponent implements OnInit {
       },
       error: (error) => {
         this.toastr.error(
-          'Voto não foi computado'
+          'Voto não foi computado.'
         );
       },
     });
@@ -62,7 +62,7 @@ export class BallotBoxComponent implements OnInit {
       return;
     }
 
-    let valueVote: Number = parseInt(
+    let valueVote: number = parseInt(
       this.firstDigit.nativeElement.value + this.lastDigit.nativeElement.value
     );
     if (this.verifyIfCandidateIsValid(valueVote)) {
@@ -88,7 +88,7 @@ export class BallotBoxComponent implements OnInit {
     this.playAudio('key.wav');
   }
 
-  insertNumber(value: Number) {
+  insertNumber(value: number) {
     let value1: string = this.firstDigit.nativeElement.value;
     let value2: string = this.lastDigit.nativeElement.value;
 
@@ -97,7 +97,7 @@ export class BallotBoxComponent implements OnInit {
     } else if (value2 == '') {
       this.lastDigit.nativeElement.value = value;
 
-      let valueVote: Number = parseInt(
+      let valueVote: number = parseInt(
         this.firstDigit.nativeElement.value + this.lastDigit.nativeElement.value
       );
 
@@ -120,7 +120,7 @@ export class BallotBoxComponent implements OnInit {
     });
   }
 
-  changeCandidateProfile(valueVote: Number) {
+  changeCandidateProfile(valueVote: number) {
     for (let candidate of this.candidateList) {
       if (valueVote === parseInt(candidate.label)) {
         this.currentCandidate.nativeElement.innerText =
@@ -134,7 +134,7 @@ export class BallotBoxComponent implements OnInit {
     }
   }
 
-  verifyIfCandidateIsValid(valueVote: Number) {
+  verifyIfCandidateIsValid(valueVote: number) {
     for (let candidate of this.candidateList) {
       if (valueVote === parseInt(candidate.label ) && valueVote < 100) {
         return true;

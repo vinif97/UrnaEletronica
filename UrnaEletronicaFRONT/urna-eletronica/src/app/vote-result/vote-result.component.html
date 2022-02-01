@@ -1,26 +1,35 @@
-<div class="votos-validos">
+<div class="vote-valid">
   <ng-container *ngFor="let candidate of candidateList">
     <div
     *ngIf="candidate.label < 100"
-      class="card border-primary"
+      class="card card-valid border-primary"
     >
-      <div class="card-header"><h3 class="text">{{ candidate.fullName.toUpperCase() }}</h3></div>
+      <div class="card-header"><h3 class="text-valid">{{ candidate.fullName.toUpperCase() }}</h3></div>
       <div class="card-body">
-        <h4 class="card-title text">{{ candidate.votes.length }} votos</h4>
+        <h4 class="card-title text-valid">{{ candidate.votes.length }} votos<br></h4>
+        <h4 class="text-valid"> {{ votesInPercentage(candidate.votes.length) }}%</h4>
       </div>
     </div>
   </ng-container>
+  <div
+      class="card card-valid border-primary"
+    >
+      <div class="card-header"><h3 class="text-valid">Total de Votos Válidos</h3></div>
+      <div class="card-body">
+        <h4 class="card-title text-valid">{{ this.totalVotesValids }}</h4>
+      </div>
+    </div>
 </div>
 
-<div class="votos-invalidos">
+<div class="vote-invalid">
   <ng-container *ngFor="let candidate of candidateList">
     <div
     *ngIf="candidate.label >= 100"
-      class="card border-primary"
+      class="card card-invalid border-primary"
     >
-      <div class="card-header"><h3 class="text">{{ candidate.fullName.toUpperCase() }}</h3></div>
+      <div class="card-header"><h3 class="text-invalid">{{ candidate.fullName.toUpperCase() }}</h3></div>
       <div class="card-body">
-        <h4 class="card-title text">{{ candidate.votes.length }} votos</h4>
+        <h4 class="card-title text-invalid">{{ candidate.votes.length }} votos</h4>
       </div>
     </div>
   </ng-container>

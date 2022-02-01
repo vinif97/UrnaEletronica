@@ -19,7 +19,7 @@ export class CandidateService {
     return this.http.get('api/votes');
   }
 
-  public deleteCandidate(label: Number) {
+  public deleteCandidate(label: number) {
     return this.http.request('delete', '/api/candidate', {body: {'label': label}});
   }
 }

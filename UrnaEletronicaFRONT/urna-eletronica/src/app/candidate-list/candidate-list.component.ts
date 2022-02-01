@@ -3,6 +3,8 @@ import { ToastrService } from 'ngx-toastr';
 import { CandidateService } from './../../services/candidate.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-candidate-list',
@@ -10,18 +12,20 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./candidate-list.component.css'],
 })
 export class CandidateListComponent {
+  candidateList: any = [];
+
   constructor(
     public candidateService: CandidateService,
     private toastr: ToastrService
   ) {}
-
-  candidateList: any = [];
 
   ngOnInit(): void {
     this.getCandidates();
   }
 
   submitCandidate(candidateForm: NgForm) {
+    console.log(candidateForm);
+
     this.candidateService.registerCandidate().subscribe({
       next: (response) => {
         this.resetCandidateForm(candidateForm);
@@ -33,7 +37,7 @@ export class CandidateListComponent {
       },
       error: (error) => {
         this.toastr.error(
-          'Falha ao inserir candidato, verifique a conexão com a API.'
+          'Falha ao inserir candidato, verifique os dados inseridos.'
         );
       },
     });
