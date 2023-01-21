@@ -28,6 +28,10 @@ namespace UrnaEletronica.Infrastructure.Context.Configuration
             builder.Property(user => user.LoginAttemps)
                 .IsRequired()
                 .HasColumnType("tinyint");
+            builder.Property(user => user.PasswordSalt)
+                .IsRequired()
+                .HasColumnType("binary")
+                .HasMaxLength(64);
         }
     }
 }
