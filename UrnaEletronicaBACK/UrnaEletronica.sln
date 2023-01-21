@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrnaEletronica", "UrnaEletronica\UrnaEletronica.csproj", "{49059CB3-8715-4501-9546-FD9A46212417}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UrnaEletronica.WebApi", "UrnaEletronica\UrnaEletronica.WebApi.csproj", "{49059CB3-8715-4501-9546-FD9A46212417}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrnaEletronica.Domain", "UrnaEletronica.Domain\UrnaEletronica.Domain.csproj", "{E2E51B09-C335-41A6-A0E1-30B5B57491E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrnaEletronica.Infrastructure", "UrnaEletronica.Infrastructure\UrnaEletronica.Infrastructure.csproj", "{E0AB2810-F6BC-4B60-923B-49B80BB8C220}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrnaEletronica.Application", "UrnaEletronica.Application\UrnaEletronica.Application.csproj", "{20EDC6B4-0943-4D03-98BA-333CC54CAC63}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{49059CB3-8715-4501-9546-FD9A46212417}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49059CB3-8715-4501-9546-FD9A46212417}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49059CB3-8715-4501-9546-FD9A46212417}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2E51B09-C335-41A6-A0E1-30B5B57491E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2E51B09-C335-41A6-A0E1-30B5B57491E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2E51B09-C335-41A6-A0E1-30B5B57491E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2E51B09-C335-41A6-A0E1-30B5B57491E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0AB2810-F6BC-4B60-923B-49B80BB8C220}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0AB2810-F6BC-4B60-923B-49B80BB8C220}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0AB2810-F6BC-4B60-923B-49B80BB8C220}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0AB2810-F6BC-4B60-923B-49B80BB8C220}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20EDC6B4-0943-4D03-98BA-333CC54CAC63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20EDC6B4-0943-4D03-98BA-333CC54CAC63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20EDC6B4-0943-4D03-98BA-333CC54CAC63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20EDC6B4-0943-4D03-98BA-333CC54CAC63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,14 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using UrnaEletronica.Data;
-using Microsoft.EntityFrameworkCore;
-using UrnaEletronica.Repository;
+using UrnaEletronica.Infrastructure.Context;
 
-namespace UrnaEletronica
+namespace UrnaEletronica.WebApi
 {
     public class Startup
     {
@@ -21,14 +20,7 @@ namespace UrnaEletronica
 
         public void ConfigureServices(IServiceCollection services)
         {
-            string mySqlConnection = Configuration.GetConnectionString("DefaultConnection");
-
-            services.AddDbContext<DbAcess>(opt =>
-                                           opt.UseMySql(mySqlConnection,
-                                           ServerVersion.AutoDetect(mySqlConnection)));
-                                           
-            services.AddScoped<ICandidateRepository, CandidateRepository>();
-            services.AddScoped<IVoteRepository, VoteRepository>();
+            services.AddDbContext<EletronicUrnContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddCors(opt =>
             {
@@ -58,9 +50,9 @@ namespace UrnaEletronica
             }
 
             app.UseCors("CorsPolicy");
-
+            app.UseAuthentication();
             app.UseAuthorization();
-
+            app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
