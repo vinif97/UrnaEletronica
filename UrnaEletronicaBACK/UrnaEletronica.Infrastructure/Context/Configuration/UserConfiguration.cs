@@ -13,10 +13,14 @@ namespace UrnaEletronica.Infrastructure.Context.Configuration
                 .IsRequired()
                 .HasColumnType("varchar")
                 .HasMaxLength(32);
+            builder.HasIndex(user => user.UserName)
+                .IsUnique();
             builder.Property(user => user.Email)
                 .IsRequired()
                 .HasColumnType("varchar")
                 .HasMaxLength(128);
+            builder.HasIndex(user => user.Email)
+                .IsUnique();
             builder.Property(user => user.Password)
                 .IsRequired()
                 .HasColumnType("varchar")

@@ -18,6 +18,8 @@ namespace UrnaEletronica.Infrastructure.Context.Configuration
                 .HasColumnType("varchar")
                 .HasMaxLength(128)
                 .IsRequired();
+            builder.HasIndex(country => country.CountryName)
+                .IsUnique();
         }
     }
 }

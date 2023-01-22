@@ -13,5 +13,11 @@
         {
             throw new NotImplementedException();
         }
+
+        public void CleanCPF()
+        {
+            if (CPF != null)
+                CPF = CPF.Trim().Replace("-", "").Replace(".", "");
+        }
     }
 }

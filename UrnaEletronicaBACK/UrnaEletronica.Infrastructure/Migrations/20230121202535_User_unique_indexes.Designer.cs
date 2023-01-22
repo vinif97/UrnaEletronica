@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UrnaEletronica.Infrastructure.Context;
 
@@ -11,9 +12,10 @@ using UrnaEletronica.Infrastructure.Context;
 namespace UrnaEletronica.Infrastructure.Migrations
 {
     [DbContext(typeof(EletronicUrnContext))]
-    partial class EletronicUrnContextModelSnapshot : ModelSnapshot
+    [Migration("20230121202535_User_unique_indexes")]
+    partial class User_unique_indexes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -150,9 +152,6 @@ namespace UrnaEletronica.Infrastructure.Migrations
 
                     b.HasKey("CityId");
 
-                    b.HasIndex("CityName")
-                        .IsUnique();
-
                     b.HasIndex("StateId");
 
                     b.ToTable("Cities");
@@ -172,9 +171,6 @@ namespace UrnaEletronica.Infrastructure.Migrations
                         .HasColumnType("varchar(128)");
 
                     b.HasKey("CountryId");
-
-                    b.HasIndex("CountryName")
-                        .IsUnique();
 
                     b.ToTable("Countries");
                 });
@@ -263,9 +259,6 @@ namespace UrnaEletronica.Infrastructure.Migrations
                     b.HasKey("StateId");
 
                     b.HasIndex("CountryId");
-
-                    b.HasIndex("StateName")
-                        .IsUnique();
 
                     b.ToTable("States");
                 });

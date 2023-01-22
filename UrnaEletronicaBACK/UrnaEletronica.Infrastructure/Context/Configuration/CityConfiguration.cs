@@ -13,6 +13,8 @@ namespace UrnaEletronica.Infrastructure.Context.Configuration
                 .IsRequired()
                 .HasColumnType("varchar")
                 .HasMaxLength(128);
+            builder.HasIndex(city => city.CityName)
+                .IsUnique();
             builder.HasOne(city => city.State)
                 .WithMany(state => state.Cities)
                 .IsRequired();

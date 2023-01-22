@@ -5,11 +5,15 @@ VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UrnaEletronica.WebApi", "UrnaEletronica\UrnaEletronica.WebApi.csproj", "{49059CB3-8715-4501-9546-FD9A46212417}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrnaEletronica.Domain", "UrnaEletronica.Domain\UrnaEletronica.Domain.csproj", "{E2E51B09-C335-41A6-A0E1-30B5B57491E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UrnaEletronica.Domain", "UrnaEletronica.Domain\UrnaEletronica.Domain.csproj", "{E2E51B09-C335-41A6-A0E1-30B5B57491E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrnaEletronica.Infrastructure", "UrnaEletronica.Infrastructure\UrnaEletronica.Infrastructure.csproj", "{E0AB2810-F6BC-4B60-923B-49B80BB8C220}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UrnaEletronica.Infrastructure", "UrnaEletronica.Infrastructure\UrnaEletronica.Infrastructure.csproj", "{E0AB2810-F6BC-4B60-923B-49B80BB8C220}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrnaEletronica.Application", "UrnaEletronica.Application\UrnaEletronica.Application.csproj", "{20EDC6B4-0943-4D03-98BA-333CC54CAC63}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UrnaEletronica.Application", "UrnaEletronica.Application\UrnaEletronica.Application.csproj", "{20EDC6B4-0943-4D03-98BA-333CC54CAC63}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E61C26B7-D5BC-4EAE-BBBF-81339D33BF1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrnaEletronica.Domain.Test", "UrnaEletronica.Domain.Test\UrnaEletronica.Domain.Test.csproj", "{6DEF2C74-26F8-4E69-9BB3-CF9B528A4917}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,9 +37,16 @@ Global
 		{20EDC6B4-0943-4D03-98BA-333CC54CAC63}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20EDC6B4-0943-4D03-98BA-333CC54CAC63}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20EDC6B4-0943-4D03-98BA-333CC54CAC63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DEF2C74-26F8-4E69-9BB3-CF9B528A4917}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DEF2C74-26F8-4E69-9BB3-CF9B528A4917}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DEF2C74-26F8-4E69-9BB3-CF9B528A4917}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DEF2C74-26F8-4E69-9BB3-CF9B528A4917}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6DEF2C74-26F8-4E69-9BB3-CF9B528A4917} = {E61C26B7-D5BC-4EAE-BBBF-81339D33BF1C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FC91BC5B-81E7-4861-81AD-F1F92F1F16EF}

@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,8 +8,14 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System;
+using System.Reflection;
 using System.Text;
+using UrnaEletronica.Application.Interfaces.Services;
+using UrnaEletronica.Application.Services;
+using UrnaEletronica.Domain.Interface.Repositories;
 using UrnaEletronica.Infrastructure.Context;
+using UrnaEletronica.Infrastructure.Repositories;
 
 namespace UrnaEletronica.WebApi
 {
@@ -34,6 +41,11 @@ namespace UrnaEletronica.WebApi
 
             services.AddControllersWithViews().AddNewtonsoftJson(options =>
                      options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
