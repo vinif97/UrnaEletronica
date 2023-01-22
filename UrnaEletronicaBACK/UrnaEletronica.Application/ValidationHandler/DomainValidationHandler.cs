@@ -18,7 +18,6 @@ namespace UrnaEletronica.Application.ValidationHandler
                 {
                     result.Errors.Add(error.ToString());
                 }
-
             }
 
             result.IsSuccess = true;

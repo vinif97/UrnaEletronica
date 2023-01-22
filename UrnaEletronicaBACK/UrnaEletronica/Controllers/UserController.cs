@@ -18,7 +18,6 @@ namespace UrnaEletronica.WebApi.Controllers
             _userService = userService;
         }
 
-        [AllowAnonymous]
         [HttpPost("sign-up")]
         public async Task<IActionResult> SignUp(UserSignUpDto userSignUpDto)
         {
