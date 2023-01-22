@@ -7,6 +7,6 @@ namespace UrnaEletronica.Application.Interfaces.Services
     public interface IUserService
     {
         Task<IResult> SignUpUser(UserSignUpDto userSignUpDto);
-        Task<User?> SignInUser(UserSignInDto userSignInDto);
+        Task<(IResult, string)> SignInUser(UserSignInDto userSignInDto);
     }
 }

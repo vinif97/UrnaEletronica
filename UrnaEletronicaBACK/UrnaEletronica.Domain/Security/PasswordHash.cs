@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace UrnaEletronica.Domain.Security
@@ -25,6 +26,9 @@ namespace UrnaEletronica.Domain.Security
 
         public static bool VerifyPassword(byte[] salt, string passwordHash, string plainPassword)
         {
+            if (salt is null || passwordHash is null || plainPassword is null)
+                return false;
+
             var hashToCompare = Rfc2898DeriveBytes.Pbkdf2(plainPassword, salt, IterationsForHash, HashAlgorithm, KeySize);
             return hashToCompare.SequenceEqual(Convert.FromHexString(passwordHash));
         }
