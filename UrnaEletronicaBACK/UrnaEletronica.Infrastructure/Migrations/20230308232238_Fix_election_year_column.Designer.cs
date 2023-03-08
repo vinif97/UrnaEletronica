@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UrnaEletronica.Infrastructure.Context;
 
@@ -11,9 +12,10 @@ using UrnaEletronica.Infrastructure.Context;
 namespace UrnaEletronica.Infrastructure.Migrations
 {
     [DbContext(typeof(EletronicUrnContext))]
-    partial class EletronicUrnContextModelSnapshot : ModelSnapshot
+    [Migration("20230308232238_Fix_election_year_column")]
+    partial class Fix_election_year_column
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

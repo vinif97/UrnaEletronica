@@ -11,7 +11,7 @@ namespace UrnaEletronica.Infrastructure.Context.Configuration
             builder.HasKey(election => election.ElectionId);
             builder.Property(election => election.ElectionYear)
                 .IsRequired()
-                .HasColumnType("tinyint");
+                .HasColumnType("smallint");
             builder.HasIndex(election => election.ElectionYear)
                 .IsUnique();
         }
