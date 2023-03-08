@@ -1,4 +1,6 @@
-﻿namespace UrnaEletronica.Domain.Model
+﻿using UrnaEletronica.Domain.Interface.Repositories;
+
+namespace UrnaEletronica.Domain.Model
 {
     public class User
     {

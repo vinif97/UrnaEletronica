@@ -9,11 +9,6 @@
         public int UserId { get; set; }
         public User? User { get; set; }
 
-        public void Vote()
-        {
-            throw new NotImplementedException();
-        }
-
         public void CleanCPF()
         {
             if (CPF != null)

@@ -45,7 +45,10 @@ namespace UrnaEletronica.WebApi
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IElectionService, ElectionService>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IElectionRepository, ElectionRepository>();
+            services.AddScoped<ICitizenRepository, CitizenRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
