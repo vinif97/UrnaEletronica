@@ -17,7 +17,7 @@ namespace UrnaEletronica.WebApi.Controllers
             _electionService = electionService;
         }
 
-        [HttpPost("StartElection")]
+        [HttpPost("start-election")]
         public async Task<IActionResult> StartElection(StartElectionDto electionDto)
         {
             IResult result = await _electionService.StartElection(electionDto);
@@ -28,8 +28,8 @@ namespace UrnaEletronica.WebApi.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("GetElection")]
-        public async Task<IActionResult> GetElection()
+        [HttpGet("get-election")]
+        public async Task<IActionResult> GetElection(int electionYear)
         {
             return NoContent();
         }

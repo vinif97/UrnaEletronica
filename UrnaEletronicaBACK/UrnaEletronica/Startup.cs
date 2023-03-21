@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -16,6 +17,7 @@ using UrnaEletronica.Application.Services;
 using UrnaEletronica.Domain.Interface.Repositories;
 using UrnaEletronica.Infrastructure.Context;
 using UrnaEletronica.Infrastructure.Repositories;
+using UrnaEletronica.WebApi.Extensions;
 
 namespace UrnaEletronica.WebApi
 {
@@ -43,7 +45,7 @@ namespace UrnaEletronica.WebApi
                      options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
+            
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IElectionService, ElectionService>();
             services.AddScoped<IUserRepository, UserRepository>();
@@ -115,6 +117,7 @@ namespace UrnaEletronica.WebApi
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+            DatabaseConfigure.Migrate(app);
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

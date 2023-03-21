@@ -9,6 +9,7 @@ namespace UrnaEletronica.Application.ValidationHandler
 
         public OperationResult()
         {
+            IsSuccess = true;
             Errors = new List<string>();
         }
     }

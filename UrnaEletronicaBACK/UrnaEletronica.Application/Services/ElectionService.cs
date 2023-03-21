@@ -27,8 +27,15 @@ namespace UrnaEletronica.Application.Services
             IResult operationResult = new OperationResult();
 
             Election election = _mapper.Map<Election>(electionDto);
-            
-            await _electionRepository.CreateElection(election);
+            try
+            {
+                await _electionRepository.CreateElection(election);
+            }
+            catch (Exception ex)
+            {
+                operationResult.IsSuccess = false;
+                operationResult.Errors.Add(ex.Message);
+            }
 
             return operationResult;
         }
