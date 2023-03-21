@@ -11,6 +11,7 @@ namespace UrnaEletronica.Domain.Model
         public string? ConfirmPassword { get; set; }
         public byte[]? PasswordSalt { get; set; }
         public ushort LoginAttemps { get; set; }
+        public string Role { get; set; } = "citizen";
         public Citizen? Citizen { get; set; }
         public Address? Address { get; set; }
     }

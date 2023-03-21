@@ -51,9 +51,7 @@ namespace UrnaEletronica.Application.Services
             string token = "";
             IResult operationResult = new OperationResult();
 
-#pragma warning disable CS8604 // Has null validation on model.
-            User? user = await _userRepository.FindByEmailAsync(userSignIn.Email);
-#pragma warning restore CS8604 // Has null validation on model.
+            User? user = await _userRepository.FindByEmailAsync(userSignIn.Email ?? throw new ArgumentNullException());
 
             if (user is null)
             {
@@ -71,24 +69,25 @@ namespace UrnaEletronica.Application.Services
                 return (operationResult, token);
             }
 
-            token = CreateToken(userSignIn.Email);
+            token = CreateToken(userSignIn.Email, user.Role);
 
 
             operationResult.IsSuccess = true;
             return (operationResult, token);
         }
 
-        private string CreateToken(string email)
+        private string CreateToken(string email, string role)
         {
             string audience = _configuration["TokenConfiguration:Audience"];
             string issuer = _configuration["TokenConfiguration:Issuer"];
             byte[] key = Encoding.ASCII.GetBytes(_configuration["TokenConfiguration:Key"]);
             DateTime expirationTime = DateTime.UtcNow.AddHours(double.Parse(_configuration["TokenConfiguration:ExpireHours"]));
-            var credentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha512Signature);
+            var credentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256);
 
             Claim[] claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Email, email)
+                new Claim(JwtRegisteredClaimNames.Email, email),
+                new Claim("roles", role)
             };
 
             JwtSecurityToken securityToken = new(

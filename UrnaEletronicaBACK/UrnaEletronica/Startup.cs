@@ -83,12 +83,7 @@ namespace UrnaEletronica.WebApi
                 });
             });
 
-            services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(o =>
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(o =>
             {
                 o.TokenValidationParameters = new TokenValidationParameters
                 {
@@ -98,8 +93,8 @@ namespace UrnaEletronica.WebApi
                     (Encoding.UTF8.GetBytes(Configuration["TokenConfiguration:Key"])),
                     ValidateIssuer = true,
                     ValidateAudience = true,
-                    ValidateLifetime = false,
-                    ValidateIssuerSigningKey = true
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
                 };
             });
         }
@@ -118,6 +113,7 @@ namespace UrnaEletronica.WebApi
             app.UseAuthentication();
             app.UseAuthorization();
             DatabaseConfigure.Migrate(app);
+            DatabaseConfigure.Populate(app);
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

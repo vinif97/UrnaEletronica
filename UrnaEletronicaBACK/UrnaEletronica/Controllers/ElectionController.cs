@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using UrnaEletronica.Application.DTOs;
 using UrnaEletronica.Application.Interfaces.Services;
@@ -18,6 +19,7 @@ namespace UrnaEletronica.WebApi.Controllers
             _electionService = electionService;
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost("start-election")]
         public async Task<IActionResult> StartElection(StartElectionDto electionDto)
         {
@@ -29,6 +31,7 @@ namespace UrnaEletronica.WebApi.Controllers
             return BadRequest(result);
         }
 
+        [Authorize(Roles = "admin,citizen")]
         [HttpGet("get-election/{electionYear:int}")]
         public async Task<IActionResult> GetElection(int electionYear)
         {

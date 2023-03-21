@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using UrnaEletronica.Domain.Model;
+using UrnaEletronica.Domain.Security;
 using UrnaEletronica.Infrastructure.Context;
 
 namespace UrnaEletronica.WebApi.Extensions
@@ -10,9 +12,37 @@ namespace UrnaEletronica.WebApi.Extensions
     {
         public static void Migrate(IApplicationBuilder app)
         {
+            var context = GetContext(app);
+            context.Database.Migrate();
+        }
+
+        public static void Populate(IApplicationBuilder app)
+        {
+            var context = GetContext(app);
+
+            if (!context.Users.Where(user => user.UserName == "Admin").Any())
+            {
+                (string password, byte[] salt) = PasswordHash.HashPassword("admin@123");
+                context.Users.Add(new User()
+                {
+                    UserName = "Admin",
+                    Email = "admin@gmail.com",
+                    Password = password,
+                    ConfirmPassword = password,
+                    PasswordSalt = salt,
+                    Role = "admin"
+                });
+
+                context.SaveChanges();
+            }
+        }
+
+        private static EletronicUrnContext GetContext(IApplicationBuilder app)
+        {
             var scope = app.ApplicationServices.CreateScope();
             var context = scope.ServiceProvider.GetRequiredService<EletronicUrnContext>();
-            context.Database.Migrate();
+
+            return context;
         }
     }
 }
