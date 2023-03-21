@@ -13,7 +13,7 @@ namespace UrnaEletronica.Domain.Validator
     {
         public CitizenValidator()
         {
-            RuleFor(citizen => citizen.CPF).Must(cpf => IsCPFValid(cpf)).WithMessage("Invalid CPF");
+            RuleFor(citizen => citizen.CPF).Must(cpf => IsCPFValid(cpf ?? "")).WithMessage("Invalid CPF");
             RuleFor(citizen => citizen.FirstName).NotEmpty().WithMessage("First name cannot be empty");
             RuleFor(citizen => citizen.LastName).NotEmpty().WithMessage("Last name cannot be empty");
         }

@@ -36,9 +36,7 @@ namespace UrnaEletronica.Application.Services
             if (!operationResult.IsSuccess)
                 return operationResult;
 
-#pragma warning disable CS8604 // Has null validation.
-            (string hashedPassword, byte[] salt) = PasswordHash.HashPassword(user.Password);
-#pragma warning restore CS8604 // Has null validation.
+            (string hashedPassword, byte[] salt) = PasswordHash.HashPassword(user.Password ?? throw new ArgumentNullException());
             user.PasswordSalt = salt;
             user.Password = hashedPassword;
             user.ConfirmPassword = hashedPassword;

@@ -28,7 +28,7 @@ namespace UrnaEletronica.Infrastructure.Repositories
         public async Task<Election?> GetElectionData(int electionYear)
         {
             Election? election = await _context.Elections.AsNoTracking().Include(election => election.ElectionCycles)
-                .ThenInclude(electionCycle => electionCycle.Candidates)
+                !.ThenInclude(electionCycle => electionCycle.Candidates)
                 .FirstOrDefaultAsync(election => election.ElectionYear == electionYear);
 
             return election;

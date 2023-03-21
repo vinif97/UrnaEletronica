@@ -40,6 +40,13 @@ namespace UrnaEletronica.Application.Services
             return operationResult;
         }
 
+        public async Task<Election?> GetElection(int electionYear)
+        {
+            Election? election = await _electionRepository.GetElectionData(electionYear);
+
+            return election;
+        }
+
         public async Task<IResult> Vote(Citizen citizen, ElectionCycle electionCycle)
         {
             throw new NotImplementedException();

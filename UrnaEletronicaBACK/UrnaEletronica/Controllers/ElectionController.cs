@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using UrnaEletronica.Application.DTOs;
 using UrnaEletronica.Application.Interfaces.Services;
 using UrnaEletronica.Application.Interfaces.ValidationHandler;
+using UrnaEletronica.Domain.Model;
 
 namespace UrnaEletronica.WebApi.Controllers
 {
@@ -28,10 +29,15 @@ namespace UrnaEletronica.WebApi.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("get-election")]
+        [HttpGet("get-election/{electionYear:int}")]
         public async Task<IActionResult> GetElection(int electionYear)
         {
-            return NoContent();
+            Election? election = await _electionService.GetElection(electionYear);
+
+            if (election is null)
+                return NotFound();
+
+            return Ok(election);
         }
     }
 }

@@ -7,6 +7,7 @@ namespace UrnaEletronica.Application.Interfaces.Services
     public interface IElectionService
     {
         Task<IResult> StartElection(StartElectionDto electionDto);
+        Task<Election?> GetElection(int electionYear);
         Task<IResult> Vote(Citizen citizen, ElectionCycle electionCycle);
     }
 }

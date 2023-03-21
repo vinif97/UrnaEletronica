@@ -15,10 +15,11 @@ namespace UrnaEletronica.Application.ValidationHandler
 
             DomainValidationHandler<User>.Validate(user, userValidator, operationResult);
 
-#pragma warning disable CS8604 // Has null validation.
-            DomainValidationHandler<Citizen>.Validate(user.Citizen, citizenValidator, operationResult);
-            DomainValidationHandler<Address>.Validate(user.Address, addressValidator, operationResult);
-#pragma warning restore CS8604 // Has null validation.
+            if (user is not null)
+            {
+                DomainValidationHandler<Citizen>.Validate(user.Citizen ?? new Citizen(), citizenValidator, operationResult);
+                DomainValidationHandler<Address>.Validate(user.Address ?? new Address(), addressValidator, operationResult);
+            }
 
             if (operationResult.Errors.Count > 0)
                 operationResult.IsSuccess = false;
