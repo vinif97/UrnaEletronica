@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using UrnaEletronica.Application.DTOs;
 using UrnaEletronica.Application.Interfaces.Services;
+using UrnaEletronica.Application.Interfaces.ValidationHandler;
 using UrnaEletronica.Domain.Model;
+using UrnaEletronica.Infrastructure.Migrations;
 
 namespace UrnaEletronica.WebApi.Controllers
 {
@@ -17,14 +20,19 @@ namespace UrnaEletronica.WebApi.Controllers
             _partyService = partyService;
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost("create-party")]
         public async Task<IActionResult> CreateParty(PartyDto partyDto)
         {
-            await _partyService.CreateParty(partyDto);
+            IResult result = await _partyService.CreateParty(partyDto);
 
-            return Ok();
+            if (result.IsSuccess)
+                return Ok();
+
+            return BadRequest(result.Errors);
         }
 
+        [Authorize(Roles = "admin,citizen")]
         [HttpGet("parties")]
         public async Task<IActionResult> GetAllParties()
         {

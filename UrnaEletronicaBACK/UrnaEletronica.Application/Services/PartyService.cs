@@ -29,7 +29,18 @@ namespace UrnaEletronica.Application.Services
             IResult result = new OperationResult();
             Party party = _mapper.Map<Party>(partyDto);
 
-            await _partyRepository.CreateParty(party);
+            try
+            {
+                await _partyRepository.CreateParty(party);
+            }
+            catch (Exception ex)
+            {
+                result.IsSuccess = false;
+                result.Errors.Add(ex.InnerException?.Message ?? ex.Message);
+
+                return result;
+            }
+            
 
             return result;
         }
