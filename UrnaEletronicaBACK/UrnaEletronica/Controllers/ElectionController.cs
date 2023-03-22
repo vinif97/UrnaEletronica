@@ -35,7 +35,7 @@ namespace UrnaEletronica.WebApi.Controllers
         [HttpGet("get-election/{electionYear:int}")]
         public async Task<IActionResult> GetElection(int electionYear)
         {
-            Election? election = await _electionService.GetElection(electionYear);
+            Election election = await _electionService.GetElection(electionYear);
 
             if (election is null)
                 return NotFound();
