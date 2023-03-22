@@ -1,5 +1,3 @@
-using AutoMapper;
-using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,7 +8,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
-using System.Reflection;
 using System.Text;
 using UrnaEletronica.Application.Interfaces.Services;
 using UrnaEletronica.Application.Services;
@@ -48,9 +45,12 @@ namespace UrnaEletronica.WebApi
             
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IElectionService, ElectionService>();
+            services.AddScoped<IPartyService, PartyService>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IElectionRepository, ElectionRepository>();
             services.AddScoped<ICitizenRepository, CitizenRepository>();
+            services.AddScoped<IPartyRepository, PartyRepository>();
+            services.AddScoped<ICandidateRepository, CandidateRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

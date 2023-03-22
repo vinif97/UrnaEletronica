@@ -13,6 +13,8 @@ namespace UrnaEletronica.Infrastructure.Context.Configuration
                 .IsRequired()
                 .HasColumnType("char")
                 .HasMaxLength(11);
+            builder.HasIndex(citizen => citizen.CPF)
+                .IsUnique();
             builder.Property(citizen => citizen.FirstName)
                 .IsRequired()
                 .HasColumnType("varchar")
