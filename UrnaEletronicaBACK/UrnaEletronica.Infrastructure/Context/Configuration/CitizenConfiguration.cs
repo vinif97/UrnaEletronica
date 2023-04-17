@@ -9,17 +9,21 @@ namespace UrnaEletronica.Infrastructure.Context.Configuration
         public void Configure(EntityTypeBuilder<Citizen> builder)
         {
             builder.HasKey(citizen => citizen.CitizenId);
-            builder.Property(citizen => citizen.CPF)
+            builder.OwnsOne(citizen => citizen.CitizenIdentity)
+                .Property(citizen => citizen.CPF)
                 .IsRequired()
                 .HasColumnType("char")
                 .HasMaxLength(11);
-            builder.HasIndex(citizen => citizen.CPF)
+            builder.OwnsOne(citizen => citizen.CitizenIdentity)
+                .HasIndex(citizen => citizen.CPF)
                 .IsUnique();
-            builder.Property(citizen => citizen.FirstName)
+            builder.OwnsOne(citizen => citizen.CitizenIdentity)
+                .Property(citizen => citizen.FirstName)
                 .IsRequired()
                 .HasColumnType("varchar")
                 .HasMaxLength(128);
-            builder.Property(citizen => citizen.LastName)
+            builder.OwnsOne(citizen => citizen.CitizenIdentity)
+                .Property(citizen => citizen.LastName)
                 .IsRequired()
                 .HasColumnType("varchar")
                 .HasMaxLength(256);

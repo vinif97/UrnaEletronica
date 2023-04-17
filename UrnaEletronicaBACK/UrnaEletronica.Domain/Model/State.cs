@@ -10,8 +10,13 @@ namespace UrnaEletronica.Domain.Model
     public class State
     {
         public int StateId { get; set; }
-        public string? StateName { get; set; }
+        public string StateName { get; set; }
         public Country? Country { get; set; }
         public ICollection<City>? Cities { get; set; }
+
+        public State(string stateName)
+        {
+            StateName = stateName;
+        }
     }
 }

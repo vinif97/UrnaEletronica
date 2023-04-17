@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using UrnaEletronica.Domain.Model;
+using UrnaEletronica.Domain.ValueObject;
 
 namespace UrnaEletronica.Infrastructure.Context.Configuration
 {
@@ -21,18 +22,22 @@ namespace UrnaEletronica.Infrastructure.Context.Configuration
                 .HasMaxLength(128);
             builder.HasIndex(user => user.Email)
                 .IsUnique();
-            builder.Property(user => user.Password)
+            builder.OwnsOne(user => user.Password)
+                .Property(user => user.PasswordString)
                 .IsRequired()
+                .HasColumnName("Password")
                 .HasColumnType("varchar")
                 .HasMaxLength(128);
-            builder.Property(user => user.ConfirmPassword)
+            builder.OwnsOne(user => user.Password)
+                .Property(user => user.ConfirmPassword)
                 .IsRequired()
                 .HasColumnType("varchar")
                 .HasMaxLength(128);
             builder.Property(user => user.LoginAttemps)
                 .IsRequired()
                 .HasColumnType("tinyint");
-            builder.Property(user => user.PasswordSalt)
+            builder.OwnsOne(user => user.Password)
+                .Property(user => user.PasswordSalt)
                 .IsRequired()
                 .HasColumnType("binary")
                 .HasMaxLength(64);
