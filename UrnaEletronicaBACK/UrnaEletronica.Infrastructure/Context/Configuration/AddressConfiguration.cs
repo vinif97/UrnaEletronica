@@ -24,7 +24,8 @@ namespace UrnaEletronica.Infrastructure.Context.Configuration
                 .HasMaxLength(256);
             builder.Property(address => address.Zipcode)
                 .HasColumnType("char")
-                .HasMaxLength(9);
+                .HasMaxLength(9)
+                .IsRequired();
             builder.HasOne(address => address.User)
                 .WithOne(user => user.Address)
                 .HasForeignKey<Address>(address => address.UserId)

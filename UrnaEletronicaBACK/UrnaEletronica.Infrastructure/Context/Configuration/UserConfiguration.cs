@@ -31,6 +31,7 @@ namespace UrnaEletronica.Infrastructure.Context.Configuration
             builder.OwnsOne(user => user.Password)
                 .Property(user => user.ConfirmPassword)
                 .IsRequired()
+                .HasColumnName("ConfirmPassword")
                 .HasColumnType("varchar")
                 .HasMaxLength(128);
             builder.Property(user => user.LoginAttemps)
@@ -39,6 +40,7 @@ namespace UrnaEletronica.Infrastructure.Context.Configuration
             builder.OwnsOne(user => user.Password)
                 .Property(user => user.PasswordSalt)
                 .IsRequired()
+                .HasColumnName("PasswordSalt")
                 .HasColumnType("binary")
                 .HasMaxLength(64);
         }

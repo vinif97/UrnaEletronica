@@ -4,7 +4,9 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using UrnaEletronica.Domain.Model;
 using UrnaEletronica.Domain.Security;
+using UrnaEletronica.Domain.ValueObject;
 using UrnaEletronica.Infrastructure.Context;
+using UrnaEletronica.Infrastructure.Migrations;
 
 namespace UrnaEletronica.WebApi.Extensions
 {
@@ -23,15 +25,8 @@ namespace UrnaEletronica.WebApi.Extensions
             if (!context.Users.Where(user => user.UserName == "Admin").Any())
             {
                 (string password, byte[] salt) = PasswordHash.HashPassword("admin@123");
-                context.Users.Add(new User()
-                {
-                    UserName = "Admin",
-                    Email = "admin@gmail.com",
-                    Password = password,
-                    ConfirmPassword = password,
-                    PasswordSalt = salt,
-                    Role = "admin"
-                });
+                Password passwordObject = new Password(password, password, salt);
+                context.Users.Add(new User("Admin", "admin@gmail.com", passwordObject, "admin"));
 
                 context.SaveChanges();
             }

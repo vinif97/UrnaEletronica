@@ -1,6 +1,7 @@
 using FluentValidation.Results;
 using UrnaEletronica.Domain.Model;
 using UrnaEletronica.Domain.Validator;
+using UrnaEletronica.Domain.ValueObject;
 
 namespace UrnaEletronica.Domain.Test
 {
@@ -13,9 +14,7 @@ namespace UrnaEletronica.Domain.Test
 
             Citizen? citizen = null;
             CitizenValidator validator = new();
-#pragma warning disable CS8604 // Possible null reference argument.
-            ValidationResult validationResult = validator.Validate(citizen);
-#pragma warning restore CS8604 // Possible null reference argument.
+            ValidationResult validationResult = validator.Validate(citizen!);
 
             Assert.Equal(expectedResult, validationResult.Errors[0].ErrorMessage);
         }
@@ -23,11 +22,7 @@ namespace UrnaEletronica.Domain.Test
         [Fact]
         public void WhenPropretiesValids_DontReturnError()
         {
-            Citizen? citizen = new();
-            citizen.CPF = "799.755.880-26";
-            citizen.FirstName = "Vinicius";
-            citizen.LastName = "Oliveira";
-            citizen.CleanCPF();
+            Citizen? citizen = new(new CitizenIdentity("799.755.880-26", "Vinicius", "Oliveira"));
             CitizenValidator validator = new();
             ValidationResult validationResult = validator.Validate(citizen);
 
@@ -39,9 +34,7 @@ namespace UrnaEletronica.Domain.Test
         {
             string expectedResult = "Invalid CPF";
 
-            Citizen? citizen = new();
-            citizen.CPF = "555.666.000-15";
-            citizen.CleanCPF();
+            Citizen? citizen = new(new CitizenIdentity("555.777.880-36", "Vinicius", "Oliveira"));
             CitizenValidator validator = new();
             ValidationResult validationResult = validator.Validate(citizen);
 
@@ -53,7 +46,7 @@ namespace UrnaEletronica.Domain.Test
         {
             string expectedResult = "Invalid CPF";
 
-            Citizen? citizen = new();
+            Citizen? citizen = new(new CitizenIdentity("", "Vinicius", "Oliveira"));
             CitizenValidator validator = new();
             ValidationResult validationResult = validator.Validate(citizen);
 

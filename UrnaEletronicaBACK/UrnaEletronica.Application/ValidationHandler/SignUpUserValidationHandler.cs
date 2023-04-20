@@ -17,8 +17,8 @@ namespace UrnaEletronica.Application.ValidationHandler
 
             if (user is not null)
             {
-                DomainValidationHandler<Citizen>.Validate(user.Citizen ?? new Citizen(), citizenValidator, operationResult);
-                DomainValidationHandler<Address>.Validate(user.Address ?? new Address(), addressValidator, operationResult);
+                DomainValidationHandler<Citizen>.Validate(user.Citizen, citizenValidator, operationResult);
+                DomainValidationHandler<Address>.Validate(user.Address, addressValidator, operationResult);
             }
 
             if (operationResult.Errors.Count > 0)

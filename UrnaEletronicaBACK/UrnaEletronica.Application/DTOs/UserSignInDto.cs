@@ -6,8 +6,14 @@ namespace UrnaEletronica.Application.DTOs
     {
         [Required(ErrorMessage = "Email cannot be empty")]
         [EmailAddress(ErrorMessage = "Invalid email")]
-        public string? Email { get; set; }
+        public string Email { get; set; }
         [Required(ErrorMessage = "Password cannot be empty")]
-        public string? Password { get; set; }
+        public string Password { get; set; }
+
+        public UserSignInDto(string email, string password)
+        {
+            Email = email;
+            Password = password;
+        }
     }
 }

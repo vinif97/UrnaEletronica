@@ -8,10 +8,13 @@ namespace UrnaEletronica.Domain.ValueObject
 {
     public class CitizenIdentity
     {
-        public string CPF { get; set; }
+        public string CPF { get; private set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
+#pragma warning disable CS8618 // EF constructor
+        private CitizenIdentity() { }
+#pragma warning restore CS8618 // EF constructor
         public CitizenIdentity(string cpf, string firstName, string lastName)
         {
             FirstName = firstName;

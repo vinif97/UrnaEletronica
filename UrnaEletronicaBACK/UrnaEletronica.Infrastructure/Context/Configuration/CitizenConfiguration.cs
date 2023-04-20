@@ -12,19 +12,23 @@ namespace UrnaEletronica.Infrastructure.Context.Configuration
             builder.OwnsOne(citizen => citizen.CitizenIdentity)
                 .Property(citizen => citizen.CPF)
                 .IsRequired()
+                .HasColumnName("CPF")
                 .HasColumnType("char")
                 .HasMaxLength(11);
             builder.OwnsOne(citizen => citizen.CitizenIdentity)
                 .HasIndex(citizen => citizen.CPF)
-                .IsUnique();
+                .IsUnique()
+                .HasDatabaseName("IX_Citizens_CPF");
             builder.OwnsOne(citizen => citizen.CitizenIdentity)
                 .Property(citizen => citizen.FirstName)
                 .IsRequired()
+                .HasColumnName("FirstName")
                 .HasColumnType("varchar")
                 .HasMaxLength(128);
             builder.OwnsOne(citizen => citizen.CitizenIdentity)
                 .Property(citizen => citizen.LastName)
                 .IsRequired()
+                .HasColumnName("LastName")
                 .HasColumnType("varchar")
                 .HasMaxLength(256);
             builder.HasOne(citizen => citizen.User)

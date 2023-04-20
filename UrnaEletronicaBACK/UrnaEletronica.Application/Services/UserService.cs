@@ -11,6 +11,7 @@ using UrnaEletronica.Application.ValidationHandler;
 using UrnaEletronica.Domain.Interface.Repositories;
 using UrnaEletronica.Domain.Model;
 using UrnaEletronica.Domain.Security;
+using UrnaEletronica.Domain.ValueObject;
 
 namespace UrnaEletronica.Application.Services
 {
@@ -36,10 +37,8 @@ namespace UrnaEletronica.Application.Services
             if (!operationResult.IsSuccess)
                 return operationResult;
 
-            (string hashedPassword, byte[] salt) = PasswordHash.HashPassword(user.Password ?? throw new ArgumentNullException());
-            user.PasswordSalt = salt;
-            user.Password = hashedPassword;
-            user.ConfirmPassword = hashedPassword;
+            (string hashedPassword, byte[] salt) = PasswordHash.HashPassword(user.Password.PasswordString ?? throw new ArgumentNullException());
+            user.Password.SetPasswordSalt(salt);
 
             await _userRepository.CreateUserAsync(user);
 
@@ -60,7 +59,7 @@ namespace UrnaEletronica.Application.Services
             }
 
 #pragma warning disable CS8604 // Has null validation
-            bool isPasswordValid = PasswordHash.VerifyPassword(user.PasswordSalt, user.Password, userSignIn.Password);
+            bool isPasswordValid = PasswordHash.VerifyPassword(user.Password.PasswordSalt, user.Password.PasswordString, userSignIn.Password);
 #pragma warning restore CS8604 // Has null validation
 
             if (!isPasswordValid)

@@ -13,9 +13,9 @@ namespace UrnaEletronica.Domain.Validator
     {
         public CitizenValidator()
         {
-            RuleFor(citizen => citizen.CPF).Must(cpf => IsCPFValid(cpf ?? "")).WithMessage("Invalid CPF");
-            RuleFor(citizen => citizen.FirstName).NotEmpty().WithMessage("First name cannot be empty");
-            RuleFor(citizen => citizen.LastName).NotEmpty().WithMessage("Last name cannot be empty");
+            RuleFor(citizen => citizen.CitizenIdentity.CPF).Must(cpf => IsCPFValid(cpf ?? "")).WithMessage("Invalid CPF");
+            RuleFor(citizen => citizen.CitizenIdentity.FirstName).NotEmpty().WithMessage("First name cannot be empty");
+            RuleFor(citizen => citizen.CitizenIdentity.LastName).NotEmpty().WithMessage("Last name cannot be empty");
         }
 
         protected override bool PreValidate(ValidationContext<Citizen> context, ValidationResult result)

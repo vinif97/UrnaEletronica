@@ -14,8 +14,8 @@ namespace UrnaEletronica.Domain.Validator
         {
             RuleFor(user => user.UserName).NotEmpty().WithMessage("Username cannot be empty");
             RuleFor(user => user.Email).NotEmpty().EmailAddress().WithMessage("Invalid email");
-            RuleFor(user => user.Password).NotEmpty().WithMessage("Password cannot be empty")
-                .Equal(user => user.ConfirmPassword).WithMessage("Passwords aren't equal");
+            RuleFor(user => user.Password.PasswordString).NotEmpty().WithMessage("Password cannot be empty")
+                .Equal(user => user.Password.ConfirmPassword).WithMessage("Passwords aren't equal");
         }
     }
 }

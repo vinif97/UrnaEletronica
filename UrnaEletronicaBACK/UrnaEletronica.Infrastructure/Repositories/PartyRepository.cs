@@ -22,14 +22,7 @@ namespace UrnaEletronica.Infrastructure.Repositories
 
         public async Task<IEnumerable<Party>> GetAllParties()
         {
-            var parties = await _context.Parties.Select(party => new Party()
-            {
-                PartyId = party.PartyId,
-                Name = party.Name,
-                Acronym = party.Acronym,
-                Description = party.Description,
-                Candidates = party.Candidates
-            }).ToListAsync();
+            var parties = await _context.Parties.Include(party => party.Candidates).ToListAsync();
 
             return parties;
         }
